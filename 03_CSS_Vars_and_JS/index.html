@@ -23,7 +23,7 @@
         <style>
             :root {
                 --base: #ffc600;
-                --spacing;
+                --spacing 10px;
                 --blur: 10px;
             }
             
@@ -62,10 +62,23 @@
                 text-decoration: none;
             }
             
+            input {
+                width: 100px;
+            }
+            
         </style>
         
         <script>
             const inputs = document.querySelectorAll('.controls input');
+            
+            function handleUpdate() {
+                const suffix = this.dataset.sizing || '';
+                document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            }
+            
+            inputs.forEach(input => input.addEventListener('change', handleUpdate));
+            //inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+            
         </script>
         
         
