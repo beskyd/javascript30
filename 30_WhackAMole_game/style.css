@@ -86,3 +86,60 @@ h1 {
     text-align: center;
     cursor: pointer;
 }
+
+
+
+.modal__game-over {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 400ms ease-in;
+}
+
+.modal__content {
+    position: relative;
+    margin: 15% auto;
+    padding: 2rem;
+    height: 20rem;
+    width: 40rem;
+    border-radius: 1rem;
+    background-color: #ffc600;
+}
+
+.modal__game-over h1 {
+    margin: 0;
+    font-size: 8rem;
+}
+
+.modal__game-over p {
+    font-size: 4rem;
+    text-align: center;
+    margin: 3rem 0 1rem 0;
+}
+
+#result {
+    padding: 0 1rem;
+    line-height: 0.5;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.close {
+    position: absolute;
+    top: -6rem;
+    right: 0;
+    font-size: 12rem;
+}
+
+.close:hover, .close:focus {
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 0 0 0.1rem rgba(0,0,0,0.8);
+    transform: scale(1.3);
+}

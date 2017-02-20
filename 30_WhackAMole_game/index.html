@@ -33,6 +33,20 @@
             </div>
         </div>
         
+        
+        <!-- Game Over modal -->
+        
+        <div class="modal__game-over" name="modal">
+            
+            <div class="modal__content">
+                <span class="close">&times;</span>
+                <h1>Game Over!</h1>
+                <p>Your result is <span class="score" id="result"></span> whacks</p>
+            </div>
+        </div>
+        
+        
+        
         <script>
             const holes = document.querySelectorAll('.hole');
             const scoreBoard = document.querySelector('.score');
@@ -40,6 +54,13 @@
             let lastHole;
             let timeUp = false;
             let score = 0;
+            if (!localStorage.getItem('highScore')) {
+                localStorage.setItem('highScore', 0);
+            }
+            
+            const modal = document.querySelector('.modal__game-over');
+            const result = modal.querySelector('#result');
+            
             
             function randomTime(min, max) {
                 return Math.round(Math.random() * (max - min) + min);
@@ -73,7 +94,10 @@
                 scoreBoard.textContent = 0;
                 timeUp = false;
                 peep();
-                setTimeout(() => timeUp = true, 10000);
+                setTimeout(() => {
+                    timeUp = true;
+                    endGame();
+                }, 10000);
             }
             
             function bonk(e) {
@@ -83,7 +107,23 @@
                 scoreBoard.textContent = score;
             } 
             
+            function endGame() {
+                //alert(`Game Over!\nYour result is ${score} whacks`);
+                modal.style.display = "block";
+                modal.style.opacity = "1";
+                result.textContent = `${score}`;
+                if (localStorage.getItem('highScore') < score) {
+                    localStorage.setItem('highScore', score);
+                }
+                score = 0;
+            }
+            
+            
+            
             moles.forEach(mole => mole.addEventListener('click', bonk));
+            modal.querySelector('.close').addEventListener('click', () => {
+                modal.style.display = "none";
+            });
             
         </script>
         
